@@ -16,8 +16,10 @@ const element = document.getElementById('app');
 const app = (
   <Provider store={store}>
     <Router history={history}>
-      <Route path="/" component={App}></Route>
-      <Route path="/view/:postId" component={Single}></Route>
+      <Route path="/" component={App}>
+        <IndexRoute component={PhotoGrid}></IndexRoute>
+        <Route path="/view/:postId" component={Single}></Route>
+      </Route>
     </Router>
   </Provider>
 );
@@ -34,3 +36,8 @@ if (process.env.NODE_ENV === 'production') {
 if (module.hot) {
   module.hot.accept();
 }
+
+// // Register the ServiceWorker
+// navigator.serviceWorker.register('service-worker.js').then(function(registration) {
+//   console.log('The service worker has been registered ', registration);
+// });
