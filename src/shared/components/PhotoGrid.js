@@ -1,18 +1,10 @@
 import React from 'react';
 import Photo from './Photo';
-import glamorous from 'glamorous';
-
-const Grid = glamorous.div({
-  display: 'flex',
-  flexWrap: 'wrap',
-  marginLeft: '-10px',
-  marginRight: '-10px'
-})
 
 class PhotoGrid extends React.Component {
   render() {
     return (
-      <Grid>
+      <div className="photo-grid">
         {
           this.props.posts.length
           ?
@@ -22,7 +14,7 @@ class PhotoGrid extends React.Component {
           LOADING
           </div>
         }
-      </Grid>
+      </div>
     )
   }
 }
