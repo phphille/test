@@ -1,15 +1,17 @@
 import React from 'react';
 import { hydrate } from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
-import store, { history } from '../shared/store';
+import { Router } from 'react-router-dom';
+import store, {history} from '../shared/store';
 
 import Index from '../shared/index';
 
 hydrate(
-  <BrowserRouter>
-    <Index />
-  </BrowserRouter>,
+  <Provider store={store}>
+    <Router history={history}>
+      <Index />
+    </Router>
+  </Provider>,
   document.getElementById('app')
 );
 

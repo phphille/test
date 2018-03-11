@@ -1,16 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
+
+import PhotoGrid from './PhotoGrid';
 
 class Main extends React.Component {
 
   render() {
-    console.log(this.props);
+    console.log(this);
     return (
       <div>
         <h1>
           <Link to="/">ihiuhiuh</Link>
         </h1>
-        {/*React.cloneElement({...this.props}.children, {...this.props})*/}
+        <PhotoGrid {...this.props}/>
       </div>
     )
   }

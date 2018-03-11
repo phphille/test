@@ -1,7 +1,6 @@
 import { createStore, compose } from 'redux';
 import { syncHistoryWithStore} from 'react-router-redux';
-import { createBrowserHistory } from 'history';
-import { browserHistory } from 'react-router';
+import { createBrowserHistory, createMemoryHistory } from 'history';
 
 // import the root reducer
 import rootReducer from './reducers/index';
@@ -17,7 +16,7 @@ const defaultState = {
 
 const store = createStore(rootReducer, defaultState);
 
-export const history = syncHistoryWithStore(createBrowserHistory(), store);
+export const history = syncHistoryWithStore( (__isClient__ ? createBrowserHistory() : createMemoryHistory()), store)
 
 if(module.hot) {
   module.hot.accept('./reducers/',() => {

@@ -3,7 +3,7 @@ import Single from './components/Single';
 
 // import Grid from './Grid'
 // import { fetchPopularRepos } from './api'
-
+// fetchInitialData: (path = '') => fetchPopularRepos(path.split('/').pop())
 const routes =  [
   {
     path: '/',
@@ -13,7 +13,6 @@ const routes =  [
   {
     path: '/view/:postId',
     component: Single,
-    // fetchInitialData: (path = '') => fetchPopularRepos(path.split('/').pop())
   }
 ]
 

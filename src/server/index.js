@@ -1,11 +1,16 @@
 import express from "express"
 import cors from "cors"
 import React from "react"
+import { Provider } from 'react-redux';
 import { renderToString } from "react-dom/server"
 import { StaticRouter, ServerRouter, matchPath } from "react-router-dom"
 // import serialize from "serialize-javascript"
+
+import store, {history} from '../shared/store';
+
 import Index from '../shared/index'
 import routes from '../shared/routes'
+
 
 const serverApp = express()
 
@@ -20,12 +25,16 @@ serverApp.get("*", (req, res, next) => {
   //   : Promise.resolve()
   //
   // promise.then((data) => {
-    const context = { data }
+    // const context = { data }
+    // <ServerRouter location={req.url} context={context}>
+
 
     const markup = renderToString(
-      <ServerRouter location={req.url} context={context}>
-        <Index />
-      </ServerRouter>
+      <Provider store={store}>
+        <StaticRouter location={req.url}>
+          <Index />
+        </StaticRouter>
+      </Provider>
     )
 
     res.send(`
@@ -34,7 +43,7 @@ serverApp.get("*", (req, res, next) => {
         <head>
           <title>SSR with RR</title>
           <script src="/bundle.js" defer></script>
-          <script>window.__INITIAL_DATA__ = ${serialize(data)}</script>
+          <script></script>
         </head>
 
         <body>
