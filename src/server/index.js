@@ -3,13 +3,14 @@ import cors from "cors"
 import React from "react"
 import { Provider } from 'react-redux';
 import { renderToString } from "react-dom/server"
-import { StaticRouter, ServerRouter, matchPath } from "react-router-dom"
+import { StaticRouter, ServerRouter, matchPath, Route, Switch } from "react-router-dom"
 // import serialize from "serialize-javascript"
 
 import store, {history} from '../shared/store';
 
-import Index from '../shared/index'
-import routes from '../shared/routes'
+import App from '../shared/components/App'
+import Routes from '../shared/Routes'
+import routesArr from '../shared/routesArr'
 
 
 const serverApp = express()
@@ -32,7 +33,11 @@ serverApp.get("*", (req, res, next) => {
     const markup = renderToString(
       <Provider store={store}>
         <StaticRouter location={req.url}>
-          <Index />
+          <Switch>
+            <Route path="/" component={App}>
+              <Routes />
+            </Route>
+          </Switch>
         </StaticRouter>
       </Provider>
     )

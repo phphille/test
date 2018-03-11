@@ -1,15 +1,20 @@
 import React from 'react';
 import { hydrate } from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
 import store, {history} from '../shared/store';
 
-import Index from '../shared/index';
+import Routes from '../shared/Routes';
+import App from '../shared/components/App'
 
 hydrate(
   <Provider store={store}>
     <Router history={history}>
-      <Index />
+      <Switch>
+        <Route path="/" component={App}>
+          <Routes />
+        </Route>
+      </Switch>
     </Router>
   </Provider>,
   document.getElementById('app')
